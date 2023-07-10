@@ -1,0 +1,40 @@
+Static properties and methods in object-oriented PHP are class-level members that are shared among all instances of the class. Unlike regular properties and methods, which are specific to each object instance, static properties and methods belong to the class itself. They can be accessed without creating an instance of the class.
+
+Here are some key points about static properties and methods:
+
+Static Properties:
+
+Shared value: A static property holds a single value that is shared among all instances of the class.
+Declaration: Static properties are declared using the static keyword within the class.
+Access: Static properties can be accessed using the class name followed by the scope resolution operator (::) or within the class using the self keyword.
+Initialization: Static properties can be initialized at the point of declaration or within a static initializer block.
+Example: Let's say you have a Counter class with a static property called count that keeps track of the number of instances created. Each time an instance is created, the count property is incremented.
+Static Methods:
+
+Shared behavior: A static method performs a specific operation or behavior that is not dependent on any specific instance of the class.
+Declaration: Static methods are declared using the static keyword within the class.
+Access: Static methods can be accessed using the class name followed by the scope resolution operator (::) or within the class using the self keyword.
+No access to instance properties: Static methods cannot access instance properties directly, as they do not operate on a specific instance of the class. They can only access other static properties or call other static methods.
+Usage example: A common use case for static methods is when you have utility functions or operations that do not require any instance-specific data.
+Here's an example that demonstrates static properties and methods in PHP:
+
+php
+Copy code
+class Counter {
+    public static $count = 0;
+
+    public function __construct() {
+        self::$count++; // Increment the count when a new instance is created
+    }
+
+    public static function getCount() {
+        return self::$count; // Return the current count
+    }
+}
+
+$instance1 = new Counter();
+$instance2 = new Counter();
+$instance3 = new Counter();
+
+echo Counter::getCount(); // Output: 3
+In the example above, the Counter class has a static property $count that keeps track of the number of instances created. Each time a new instance is created, the $count property is incremented. The static method getCount() returns the current count. We create three instances of the Counter class, and then use the getCount() method to retrieve the count, which outputs 3.
